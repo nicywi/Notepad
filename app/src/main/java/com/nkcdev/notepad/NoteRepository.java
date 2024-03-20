@@ -51,7 +51,7 @@ executors.execute(new Runnable() {
         });
     }
 
-    public LiveData<List<Note>> getAllNotes(Note note) {
+    public LiveData<List<Note>> getAllNotes() {
         return notes;
     }
 
