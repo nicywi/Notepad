@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteHolder>{
+public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteHolder> {
 
     private List<Note> notes = new ArrayList<>();
 
@@ -27,14 +27,24 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteHolder>{
     @Override
     public void onBindViewHolder(@NonNull NoteHolder holder, int position) {
 
+        Note currentNote = notes.get(position);
+        holder.textViewTitle.setText(currentNote.getTitle());
+        holder.textViewDescription.setText(currentNote.getDescription());
+
+
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return notes.size();
     }
 
-    class NoteHolder extends RecyclerView.ViewHolder{
+    public void setNotes(List<Note> notes){
+        this.notes = notes;
+        notifyDataSetChanged();
+    }
+
+    class NoteHolder extends RecyclerView.ViewHolder {
         TextView textViewTitle;
         TextView textViewDescription;
 
