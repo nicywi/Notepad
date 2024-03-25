@@ -126,6 +126,19 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onActivityResult(ActivityResult result) {
 
+                        int resultCode = result.getResultCode();
+                        Intent data = result.getData();
+                        if(resultCode == RESULT_OK && data != null){
+                            String title = data.getStringExtra("titleLast");
+                            String description = data.getStringExtra("descriptionLast");
+                            int id = data.getIntExtra("noteId", -1);
+
+                            Note note = new Note(title, description);
+                            note.setId(id);
+
+                            noteViewModel.update(note);
+                        }
+
                     }
                 });
     }
